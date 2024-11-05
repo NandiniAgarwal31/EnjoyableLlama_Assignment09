@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>18f1f699-e23b-4bfe-98f0-0c0d4816ee9f</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>EnjoyableLlamaPackage\main.py</StartupFile>
+    <StartupFile>mainPackage\main.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -21,13 +21,13 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="EnjoyableLlamaPackage\__init__.py">
+    <Compile Include="mainPackage\__init__.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="EnjoyableLlamaPackage\main.py" />
+    <Compile Include="mainPackage\main.py" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="EnjoyableLlamaPackage\" />
+    <Folder Include="mainPackage\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
