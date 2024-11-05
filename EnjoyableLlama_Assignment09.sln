@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "EnjoyableLlama_Assignment09", "EnjoyableLlama_Assignment09\EnjoyableLlama_Assignment09.pyproj", "{18F1F699-E23B-4BFE-98F0-0C0D4816EE9F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{18F1F699-E23B-4BFE-98F0-0C0D4816EE9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18F1F699-E23B-4BFE-98F0-0C0D4816EE9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {521B3EE9-E8E4-4127-B8F9-46D8E03EC65B}
+	EndGlobalSection
+EndGlobal
