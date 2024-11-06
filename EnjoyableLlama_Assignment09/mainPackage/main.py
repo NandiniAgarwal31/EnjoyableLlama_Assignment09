@@ -1,5 +1,5 @@
 # main.py
-from sqlPackage.sql import *
+from sqlPackage.sql import * 
 import random
 
 if __name__ == "__main__":
@@ -13,7 +13,7 @@ if __name__ == "__main__":
     else:
         print("Successfully connected to the database.")
 
-        # Step 2: Fetch product data
+        # Step 2: Fetch product data from tProduct
         print("Step 2: Fetching product data from tProduct table...")
         product_data = fetch_product_data(conn)
         if not product_data:
@@ -31,8 +31,11 @@ if __name__ == "__main__":
                   f"ManufacturerID: {manufacturer_id}, BrandID: {brand_id}")
 
             # Step 4: Fetch manufacturer name
-            print("Step 4: Fetching manufacturer name...")
-            manufacturer_name = fetch_manufacturer_name(conn, manufacturer_id)
+            print("Step 4: Fetching manufacturer name using join...")
+            manufacturer_data = fetch_product_details_with_manufacturer(conn)
+            manufacturer_name = next(
+                (row[2] for row in manufacturer_data if row[0] == product_id), None
+            )
             if not manufacturer_name:
                 print("Manufacturer not found.")
                 conn.close()
@@ -40,17 +43,20 @@ if __name__ == "__main__":
                 print(f"Manufacturer Name: {manufacturer_name}")
 
                 # Step 5: Fetch brand name
-                print("Step 5: Fetching brand name...")
-                brand_name = fetch_brand_name(conn, brand_id)
+                print("Step 5: Fetching brand name using join...")
+                brand_data = fetch_product_brand_details(conn)
+                brand_name = next(
+                    (row[2] for row in brand_data if row[0] == product_id), None
+                )
                 if not brand_name:
                     print("Brand not found.")
                     conn.close()
                 else:
                     print(f"Brand Name: {brand_name}")
 
-                    # Step 6: Fetch number of items sold
+                    # Step 6: Fetch number of items sold for the selected product
                     print("Step 6: Fetching number of items sold for the selected product...")
-                    items_sold = fetch_items_sold(conn, product_id)
+                    items_sold = fetch_product_sales_details(conn, product_id)
                     print(f"Number of items sold: {items_sold}")
 
                     # Step 7: Construct output sentence
