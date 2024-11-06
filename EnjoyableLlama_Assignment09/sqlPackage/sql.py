@@ -1,4 +1,5 @@
-# sql.py
+#sql.py
+
 import pyodbc
 import random
 
@@ -32,46 +33,69 @@ def fetch_product_data(conn):
     results = cursor.fetchall()
     return results
 
-def fetch_manufacturer_name(conn, manufacturer_id):
+def fetch_product_details_with_manufacturer(conn):
     """
-    Fetch the manufacturer name for a given ManufacturerID.
+    Join tProduct with tManufacturer to get product details along with manufacturer name.
     @param conn: Database connection object
-    @param manufacturer_id: Manufacturer ID to search for
-    @return: Manufacturer name as a string
+    @return: List of products with manufacturer name
     """
     cursor = conn.cursor()
-    query = f"SELECT Manufacturer FROM tManufacturer WHERE ManufacturerID = {manufacturer_id}"
+    query = """
+    SELECT p.ProductID, p.Description, m.Manufacturer
+    FROM tProduct p
+    JOIN tManufacturer m ON p.ManufacturerID = m.ManufacturerID
+    """
     cursor.execute(query)
-    result = cursor.fetchone()
-    return result[0] if result else None
+    results = cursor.fetchall()
+    return results
 
-def fetch_brand_name(conn, brand_id):
+def fetch_product_sales_details(conn, product_id):
     """
-    Fetch the brand name for a given BrandID.
+    Join tTransactionDetail and tTransaction to get the sales details for a specific product.
     @param conn: Database connection object
-    @param brand_id: Brand ID to search for
-    @return: Brand name as a string
+    @param product_id: Product ID to filter sales details
+    @return: Total quantity sold for the given product
     """
     cursor = conn.cursor()
-    query = f"SELECT Brand FROM tBrand WHERE BrandID = {brand_id}"
-    cursor.execute(query)
-    result = cursor.fetchone()
-    return result[0] if result else None
-
-def fetch_items_sold(conn, product_id):
+    query = """
+    SELECT SUM(td.QtyOfProduct) AS TotalQuantitySold
+    FROM tTransactionDetail td
+    JOIN tTransaction t ON td.TransactionID = t.TransactionID
+    WHERE td.ProductID = ? AND t.TransactionTypeID = 1
     """
-    Fetch the number of items sold for a specific ProductID.
-    @param conn: Database connection object
-    @param product_id: Product ID to search for
-    @return: Total number of items sold as an integer
-    """
-    cursor = conn.cursor()
-    query = (
-        "SELECT SUM(dbo.tTransactionDetail.QtyOfProduct) AS NumberOfItemsSold "
-        "FROM dbo.tTransactionDetail INNER JOIN dbo.tTransaction "
-        "ON dbo.tTransactionDetail.TransactionID = dbo.tTransaction.TransactionID "
-        "WHERE (dbo.tTransaction.TransactionTypeID = 1) AND (dbo.tTransactionDetail.ProductID = ?)"
-    )
     cursor.execute(query, product_id)
     result = cursor.fetchone()
     return result[0] if result else 0
+
+def fetch_product_brand_details(conn):
+    """
+    Join tProduct with tBrand to get product details along with brand name.
+    @param conn: Database connection object
+    @return: List of products with brand name
+    """
+    cursor = conn.cursor()
+    query = """
+    SELECT p.ProductID, p.Description, b.Brand
+    FROM tProduct p
+    JOIN tBrand b ON p.BrandID = b.BrandID
+    """
+    cursor.execute(query)
+    results = cursor.fetchall()
+    return results
+
+def fetch_full_product_details(conn):
+    """
+    Join tProduct, tManufacturer, and tBrand to get complete details for each product.
+    @param conn: Database connection object
+    @return: List of products with full details (product description, manufacturer, and brand)
+    """
+    cursor = conn.cursor()
+    query = """
+    SELECT p.ProductID, p.Description, m.Manufacturer, b.Brand
+    FROM tProduct p
+    JOIN tManufacturer m ON p.ManufacturerID = m.ManufacturerID
+    JOIN tBrand b ON p.BrandID = b.BrandID
+    """
+    cursor.execute(query)
+    results = cursor.fetchall()
+    return results
