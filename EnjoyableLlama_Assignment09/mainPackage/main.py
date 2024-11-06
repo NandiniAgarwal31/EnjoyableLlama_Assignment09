@@ -26,8 +26,8 @@ if __name__ == "__main__":
             # Step 3: Randomly select one row from product data
             
             selected_product = random.choice(product_data)
-            product_id, upc, description, manufacturer_id, brand_id = selected_product
-            print(f"Selected Product - ID: {product_id}, Description: {description}, "
+            product_id, upc, Description, manufacturer_id, brand_id = selected_product
+            print(f"Selected Product - ID: {product_id}, Description: {Description}, "
                   f"ManufacturerID: {manufacturer_id}, BrandID: {brand_id}")
 
             # Step 4: Fetch manufacturer name
@@ -62,9 +62,7 @@ if __name__ == "__main__":
                     # Step 7: Construct output sentence
                     
                     output_sentence = (
-                        f"The product '{description}', manufactured by '{manufacturer_name}' under the brand '{brand_name}', "
-                        f"has sold a total of {items_sold} items."
-                    )
+                        f"The product {Description}, manufactured by {manufacturer_name} of brand {brand_name}, has sold a total of {items_sold} items.")
                     print("Output Sentence:")
                     print(output_sentence)
 
