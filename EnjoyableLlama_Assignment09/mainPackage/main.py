@@ -6,7 +6,7 @@ if __name__ == "__main__":
     print("Starting the program...")
 
     # Step 1: Connect to the database
-    print("Step 1: Connecting to the database...")
+
     conn = connect_to_database()
     if conn is None:
         print("Failed to connect to the database.")
