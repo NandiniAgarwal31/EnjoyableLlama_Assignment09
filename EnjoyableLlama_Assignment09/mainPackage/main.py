@@ -4,12 +4,11 @@
 # Due Date:   6/11/2024
 # Course #/Section:  4010- 001
 # Semester/Year:   Fall 2024
-# Brief Description of the assignment:  Team assignment based on sql quesries and its data relation with python. We coded such that the databse output is in terminal and reflects all the joins and statements.
+# Brief Description of the assignment:  Team assignment based on sql queries and its data relation with python. We coded such that the databse output is in terminal and reflects all the joins and statements.
 
 # Brief Description of what this module does. This module is the main module and talks about all the prints statements and joints that are required. It also has all the exceptions and error handling in it.
 # Citations:
-# Anything else that's relevant: The description statement beacuse of random functions does not give any output somtime, we need to run the main.py twice
-
+# Anything else that's relevant: 
 
 
 

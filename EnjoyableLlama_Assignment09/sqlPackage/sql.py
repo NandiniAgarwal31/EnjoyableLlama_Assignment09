@@ -39,15 +39,20 @@ def connect_to_database():
 
 def fetch_product_data(conn):
     """
-    Fetch data from tProduct table.
+    Fetch data from tProduct table, excluding rows with empty or NULL Description.
     @param conn: Database connection object
     @return: List of rows from the tProduct table
     """
     cursor = conn.cursor()
-    query = "SELECT ProductID, [UPC-A ], Description, ManufacturerID, BrandID FROM tProduct"
+    query = """
+    SELECT ProductID, [UPC-A], Description, ManufacturerID, BrandID 
+    FROM tProduct 
+    WHERE Description IS NOT NULL AND Description <> ''
+    """
     cursor.execute(query)
     results = cursor.fetchall()
     return results
+
 
 def fetch_product_details_with_manufacturer(conn):
     """
