@@ -19,7 +19,7 @@
 import pyodbc
 import random
 
-# establish a connection to the database
+# establishing a connection to the database
 
 def connect_to_database():
     """
