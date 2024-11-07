@@ -19,6 +19,8 @@
 import pyodbc
 import random
 
+# establish a connection to the database
+
 def connect_to_database():
     """
     Connect to the SQL Server database.
@@ -37,6 +39,9 @@ def connect_to_database():
         print(f"Error connecting to database: {e}")
         return None
 
+
+# fetch data from the product table
+
 def fetch_product_data(conn):
     """
     Fetch data from tProduct table, excluding rows with empty or NULL Description.
@@ -54,6 +59,9 @@ def fetch_product_data(conn):
     return results
 
 
+
+# fetch product details and the manufacturer name
+
 def fetch_product_details_with_manufacturer(conn):
     """
     Join tProduct with tManufacturer to get product details along with manufacturer name.
@@ -69,6 +77,9 @@ def fetch_product_details_with_manufacturer(conn):
     cursor.execute(query)
     results = cursor.fetchall()
     return results
+
+
+# fetch product sales information for each product
 
 def fetch_product_sales_details(conn, product_id):
     """
@@ -88,6 +99,8 @@ def fetch_product_sales_details(conn, product_id):
     result = cursor.fetchone()
     return result[0] if result else 0
 
+# fetch product brand details and brand name
+
 def fetch_product_brand_details(conn):
     """
     Join tProduct with tBrand to get product details along with brand name.
@@ -103,6 +116,8 @@ def fetch_product_brand_details(conn):
     cursor.execute(query)
     results = cursor.fetchall()
     return results
+
+# fetch all of the details relating to a product
 
 def fetch_full_product_details(conn):
     """
